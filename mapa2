@@ -1,0 +1,35 @@
+package main
+
+import "fmt"
+
+func mesclarMapas(m1, m2 map[string]string) map[string]string {
+	resultado := make(map[string]string)
+
+	for chave, valor := range m1 {
+		resultado[chave] = valor
+	}
+
+	for chave, valor := range m2 {
+		resultado[chave] = valor
+	}
+
+	return resultado
+}
+
+func main() {
+	map1 := map[string]string{
+		"chave1": "valor1",
+		"chave2": "valor2",
+	}
+
+	map2 := map[string]string{
+		"chave2": "novoValor",
+		"chave3": "valor3",
+	}
+
+	resultado := mesclarMapas(map1, map2)
+
+	for chave, valor := range resultado {
+		fmt.Printf("%s: %s\n", chave, valor)
+	}
+}
