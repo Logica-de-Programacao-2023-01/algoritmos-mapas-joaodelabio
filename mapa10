@@ -1,0 +1,35 @@
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func countPairs(nums []int) map[[2]int]int {
+	pairCount := make(map[[2]int]int)
+
+	// Ordena o slice de inteiros para garantir que os pares sejam únicos
+	sort.Ints(nums)
+
+	// Percorre o slice de inteiros
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			// Cria um par de números
+			pair := [2]int{nums[i], nums[j]}
+			// Incrementa a contagem do par no mapa
+			pairCount[pair]++
+		}
+	}
+
+	return pairCount
+}
+
+func main() {
+	numbers := []int{1, 2, 3, 4, 5, 2, 3, 4, 5, 2}
+	pairFreq := countPairs(numbers)
+
+	fmt.Println("Frequência de pares:")
+	for pair, freq := range pairFreq {
+		fmt.Printf("%v: %d\n", pair, freq)
+	}
+}
