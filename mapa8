@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+)
+
+func calcularDivisaoConta(despesas map[string]float64) map[string]float64 {
+	totalDespesas := 0.0
+
+	// Calcula o total de despesas
+	for _, valor := range despesas {
+		totalDespesas += valor
+	}
+
+	// Calcula a média de despesas por pessoa
+	mediaDespesas := totalDespesas / float64(len(despesas))
+
+	resultado := make(map[string]float64)
+
+	// Calcula o valor que cada pessoa deve receber ou pagar
+	for nome, valor := range despesas {
+		resultado[nome] = valor - mediaDespesas
+	}
+
+	return resultado
+}
+
+func main() {
+	despesas := map[string]float64{
+		"João":    100.0,
+		"Maria":   150.0,
+		"Pedro":   80.0,
+		"Ana":     120.0,
+		"Carolina": 90.0,
+	}
+
+	resultado := calcularDivisaoConta(despesas)
+
+	fmt.Println("Resultado da divisão de despesas:")
+	for nome, valor := range resultado {
+		fmt.Printf("%s: %.2f\n", nome, valor)
+	}
+}
