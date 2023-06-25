@@ -1,0 +1,29 @@
+package main
+
+import "fmt"
+
+func somarContagens(listas []map[string]int) map[string]int {
+	soma := make(map[string]int)
+
+	for _, lista := range listas {
+		for palavra, contagem := range lista {
+			soma[palavra] += contagem
+		}
+	}
+
+	return soma
+}
+
+func main() {
+	listas := []map[string]int{
+		{"olá": 2, "mundo": 3},
+		{"olá": 1, "go": 5},
+		{"go": 2, "golang": 4},
+	}
+
+	soma := somarContagens(listas)
+
+	for palavra, contagem := range soma {
+		fmt.Printf("%s: %d\n", palavra, contagem)
+	}
+}
